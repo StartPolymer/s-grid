@@ -11,21 +11,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../polymer/polymer.html">
 
 <!--
-app-grid is a helper class useful for creating responsive, fluid grid layouts using custom properties.
+s-grid is a helper class useful for creating responsive, fluid grid layouts using custom properties.
 Because custom properties can be defined inside a `@media` rule, you can customize the grid layout
 for different responsive breakpoints.
 
 Example:
 
-Import `app-grid-style.html` and include `app-grid-style` in the style of an element's definition.
-Then, add the class `app-grid` to a container such as `ul` or `div`:
+Import `s-grid-style.html` and include `s-grid-style` in the style of an element's definition.
+Then, add the class `s-grid` to a container such as `ul` or `div`:
 
 ```html
 <template>
-  <style include="app-grid-style">
+  <style include="s-grid-style">
     :host {
-      --app-grid-columns: 3;
-      --app-grid-item-height: 100px;
+      --s-grid-columns: 3;
+      --s-grid-item-height: 100px;
     }
 
     ul {
@@ -37,7 +37,7 @@ Then, add the class `app-grid` to a container such as `ul` or `div`:
       background-color: white;
     }
   </style>
-  <ul class="app-grid">
+  <ul class="s-grid">
     <li class="item">1</li>
     <li class="item">2</li>
     <li class="item">3</li>
@@ -50,21 +50,21 @@ In the example above, the grid  will take 3 columns per row.
 
 In many cases, it's useful to expand an item more than 1 column. To achieve this type of layout,
 you can specify the number of columns the item should expand to by setting the custom property
-`--app-grid-expandible-item-columns`. To indicate which item should expand, apply the mixin
-`--app-grid-expandible-item` to a rule with a selector to the item. For example:
+`--s-grid-expandible-item-columns`. To indicate which item should expand, apply the mixin
+`--s-grid-expandible-item` to a rule with a selector to the item. For example:
 
 <pre><code>
 &lt;template>
-  &lt;style include="app-grid-style">
+  &lt;style include="s-grid-style">
     :host {
-      --app-grid-columns: 3;
-      --app-grid-item-height: 100px;
-      --app-grid-expandible-item-columns: 3;
+      --s-grid-columns: 3;
+      --s-grid-item-height: 100px;
+      --s-grid-expandible-item-columns: 3;
     }
 
     /* Only the first item should expand */
     .item:first-child {
-      &#64;apply(--app-grid-expandible-item);
+      &#64;apply(--s-grid-expandible-item);
     }
   &lt;/style>
 &lt;/template>
@@ -73,23 +73,23 @@ you can specify the number of columns the item should expand to by setting the c
 ### Preserving the aspect ratio
 
 When the size of a grid item should preserve the aspect ratio, you can add the `has-aspect-ratio`
-attribute to the element with the class `.app-grid`. Now, every item element becomes a wrapper around
+attribute to the element with the class `.s-grid`. Now, every item element becomes a wrapper around
 the item content. For example:
 
 ```html
 <template>
-  <style include="app-grid-style">
+  <style include="s-grid-style">
     :host {
-      --app-grid-columns: 3;
+      --s-grid-columns: 3;
       /* 50% the width of the item is equivalent to 2:1 aspect ratio*/
-      --app-grid-item-height: 50%;
+      --s-grid-item-height: 50%;
     }
 
     .item {
       background-color: white;
     }
   </style>
-  <ul class="app-grid" has-aspect-ratio>
+  <ul class="s-grid" has-aspect-ratio>
     <li class="item">
       <div>item 1</div>
     </li>
@@ -107,17 +107,17 @@ the item content. For example:
 
 Custom property                               | Description                                                | Default
 ----------------------------------------------|------------------------------------------------------------|------------------
-`--app-grid-columns`                          | The number of columns per row.                             | 1
-`--app-grid-gutter`                           | The space between two items.                               | 0px
-`--app-grid-item-height`                      | The height of the items.                                   | auto
-`--app-grid-expandible-item-columns`          | The number of columns an expandible item should expand to. | 1
+`--s-grid-columns`                          | The number of columns per row.                             | 1
+`--s-grid-gutter`                           | The space between two items.                               | 0px
+`--s-grid-item-height`                      | The height of the items.                                   | auto
+`--s-grid-expandible-item-columns`          | The number of columns an expandible item should expand to. | 1
 
 @group App Elements
-@pseudoElement app-grid
-@demo app-grid/demo/index.html
+@pseudoElement s-grid
+@demo s-grid/demo/index.html
 -->
 
-<dom-module id="app-grid-style">
+<dom-module id="s-grid-style">
   <template>
     <style>
 
@@ -128,19 +128,19 @@ Custom property                               | Description                     
          * ((100% - subPixelAdjustment) / columns * itemColumns - gutter
          *
          * - subPixelAdjustment: 0.1px (Required for IE 11)
-         * - gutter: var(--app-grid-gutter)
-         * - columns: var(--app-grid-columns)
-         * - itemColumn: var(--app-grid-expandible-item-columns)
+         * - gutter: var(--s-grid-gutter)
+         * - columns: var(--s-grid-columns)
+         * - itemColumn: var(--s-grid-expandible-item-columns)
          */
-        --app-grid-expandible-item: {
-          -webkit-flex-basis: calc((100% - 0.1px) / var(--app-grid-columns, 1) * var(--app-grid-expandible-item-columns, 1) - var(--app-grid-gutter, 0px)) !important;
-          flex-basis: calc((100% - 0.1px) / var(--app-grid-columns, 1) * var(--app-grid-expandible-item-columns, 1) - var(--app-grid-gutter, 0px)) !important;
-          max-width: calc((100% - 0.1px) / var(--app-grid-columns, 1) * var(--app-grid-expandible-item-columns, 1) - var(--app-grid-gutter, 0px)) !important;
+        --s-grid-expandible-item: {
+          -webkit-flex-basis: calc((100% - 0.1px) / var(--s-grid-columns, 1) * var(--s-grid-expandible-item-columns, 1) - var(--s-grid-gutter, 0px)) !important;
+          flex-basis: calc((100% - 0.1px) / var(--s-grid-columns, 1) * var(--s-grid-expandible-item-columns, 1) - var(--s-grid-gutter, 0px)) !important;
+          max-width: calc((100% - 0.1px) / var(--s-grid-columns, 1) * var(--s-grid-expandible-item-columns, 1) - var(--s-grid-gutter, 0px)) !important;
         };
       }
 
-      .app-grid,
-      :host ::content .app-grid {
+      .s-grid,
+      :host ::content .s-grid {
         display: -ms-flexbox;
         display: -webkit-flex;
         display: flex;
@@ -153,43 +153,43 @@ Custom property                               | Description                     
         -webkit-flex-wrap: wrap;
         flex-wrap: wrap;
 
-        padding-top: var(--app-grid-gutter, 0px);
-        padding-left: var(--app-grid-gutter, 0px);
+        padding-top: var(--s-grid-gutter, 0px);
+        padding-left: var(--s-grid-gutter, 0px);
         box-sizing: border-box;
       }
 
-      .app-grid > *,
-      :host ::content .app-grid > * {
+      .s-grid > *,
+      :host ::content .s-grid > * {
         /* Required for IE 10 */
         -ms-flex: 1 1 100%;
         -webkit-flex: 1;
         flex: 1;
 
         /* The width for an item is: (100% - subPixelAdjustment - gutter * columns) / columns */
-        -webkit-flex-basis: calc((100% - 0.1px - (var(--app-grid-gutter, 0px) * var(--app-grid-columns, 1))) / var(--app-grid-columns, 1));
-        flex-basis: calc((100% - 0.1px - (var(--app-grid-gutter, 0px) * var(--app-grid-columns, 1))) / var(--app-grid-columns, 1));
+        -webkit-flex-basis: calc((100% - 0.1px - (var(--s-grid-gutter, 0px) * var(--s-grid-columns, 1))) / var(--s-grid-columns, 1));
+        flex-basis: calc((100% - 0.1px - (var(--s-grid-gutter, 0px) * var(--s-grid-columns, 1))) / var(--s-grid-columns, 1));
 
-        max-width: calc((100% - 0.1px - (var(--app-grid-gutter, 0px) * var(--app-grid-columns, 1))) / var(--app-grid-columns, 1));
-        margin-bottom: var(--app-grid-gutter, 0px);
-        margin-right: var(--app-grid-gutter, 0px);
-        height: var(--app-grid-item-height);
+        max-width: calc((100% - 0.1px - (var(--s-grid-gutter, 0px) * var(--s-grid-columns, 1))) / var(--s-grid-columns, 1));
+        margin-bottom: var(--s-grid-gutter, 0px);
+        margin-right: var(--s-grid-gutter, 0px);
+        height: var(--s-grid-item-height);
         box-sizing: border-box;
       }
 
-      .app-grid[has-aspect-ratio] > *,
-      :host ::content .app-grid[has-aspect-ratio] > * {
+      .s-grid[has-aspect-ratio] > *,
+      :host ::content .s-grid[has-aspect-ratio] > * {
         position: relative;
       }
 
-      .app-grid[has-aspect-ratio] > *::before,
-      :host ::content .app-grid[has-aspect-ratio] > *::before {
+      .s-grid[has-aspect-ratio] > *::before,
+      :host ::content .s-grid[has-aspect-ratio] > *::before {
         display: block;
         content: "";
-        padding-top: var(--app-grid-item-height, 100%);
+        padding-top: var(--s-grid-item-height, 100%);
       }
 
-      .app-grid[has-aspect-ratio] > * > *,
-      :host ::content .app-grid[has-aspect-ratio] > * > * {
+      .s-grid[has-aspect-ratio] > * > *,
+      :host ::content .s-grid[has-aspect-ratio] > * > * {
         position: absolute;
         top: 0;
         right: 0;

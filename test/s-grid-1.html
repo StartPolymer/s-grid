@@ -11,14 +11,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>test for app-grid</title>
+  <title>test for s-grid</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
   <script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
   <script src="../../../web-component-tester/browser.js"></script>
   <script src="../../../test-fixture/test-fixture-mocha.js"></script>
   <link rel="import" href="../../../test-fixture/test-fixture.html">
-  <link rel="import" href="../app-grid-style.html">
+  <link rel="import" href="../s-grid-style.html">
 
   <style>
     body {
@@ -31,14 +31,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
  <dom-module id="x-grid">
     <template>
-      <style include="app-grid-style">
+      <style include="s-grid-style">
 
         :host {
           display: block;
-          --app-grid-columns: 3;
-          --app-grid-gutter: 10px;
-          --app-grid-expandible-item-columns: 3;
-          --app-grid-item-height: 20vw;
+          --s-grid-columns: 3;
+          --s-grid-gutter: 10px;
+          --s-grid-expandible-item-columns: 3;
+          --s-grid-item-height: 20vw;
           width: 200px;
           background-color: red;
 
@@ -56,12 +56,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
 
         .item:nth-child(4n + 1) {
-            @apply(--app-grid-expandible-item);
+            @apply(--s-grid-expandible-item);
         }
 
       </style>
 
-      <ul class="app-grid">
+      <ul class="s-grid">
         <template items="[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]" is="dom-repeat">
           <li class="item">[[item]]</li>
         </template>

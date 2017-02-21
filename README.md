@@ -1,21 +1,21 @@
-##&lt;app-grid&gt;
+##&lt;s-grid&gt;
 
-app-grid is a helper class useful for creating responsive, fluid grid layouts using custom properties.
+s-grid is a helper class useful for creating responsive, fluid grid layouts using custom properties.
 Because custom properties can be defined inside a `@media` rule, you can customize the grid layout
 for different responsive breakpoints.
 
 Example:
 
-Import `app-grid-style.html` and include `app-grid-style` in the style of an element's definition.
-Then, add the class `app-grid` to a container such as `ul` or `div`:
+Import `s-grid-style.html` and include `s-grid-style` in the style of an element's definition.
+Then, add the class `s-grid` to a container such as `ul` or `div`:
 
 ```html
 <template>
-  <style include="app-grid-style">
+  <style include="s-grid-style">
 
     :host {
-      --app-grid-columns: 3;
-      --app-grid-item-height: 100px;
+      --s-grid-columns: 3;
+      --s-grid-item-height: 100px;
     }
 
     ul {
@@ -29,12 +29,12 @@ Then, add the class `app-grid` to a container such as `ul` or `div`:
 
     @media (max-width: 640px) {
       :host {
-        --app-grid-columns: 1;
+        --s-grid-columns: 1;
       }
     }
 
   </style>
-  <ul class="app-grid">
+  <ul class="s-grid">
     <li class="item">1</li>
     <li class="item">2</li>
     <li class="item">3</li>
@@ -49,16 +49,16 @@ smaller than 640px.
 
 In many cases, it's useful to expand an item more than 1 column. To achieve this type of layout,
 you can specify the number of columns the item should expand to by setting the custom property
-`--app-grid-expandible-item-columns`. To indicate which item should expand, apply the mixin
-`--app-grid-expandible-item` to a rule with a selector to the item. For example:
+`--s-grid-expandible-item-columns`. To indicate which item should expand, apply the mixin
+`--s-grid-expandible-item` to a rule with a selector to the item. For example:
 
 ```html
 <template>
-  <style include="app-grid-style">
+  <style include="s-grid-style">
     :host {
-      --app-grid-columns: 3;
-      --app-grid-item-height: 100px;
-      --app-grid-expandible-item-columns: 3;
+      --s-grid-columns: 3;
+      --s-grid-item-height: 100px;
+      --s-grid-expandible-item-columns: 3;
     }
 
     ul {
@@ -68,7 +68,7 @@ you can specify the number of columns the item should expand to by setting the c
 
     /* Only the first item should expand */
     .item:first-child {
-      @apply(--app-grid-expandible-item);
+      @apply(--s-grid-expandible-item);
     }
   </style>
 </template>
@@ -77,17 +77,17 @@ you can specify the number of columns the item should expand to by setting the c
 ### Preserving the aspect ratio
 
 When the size of a grid item should preserve the aspect ratio, you can add the `has-aspect-ratio`
-attribute to the element with the class `app-grid`. Now, every item element becomes a wrapper around
+attribute to the element with the class `s-grid`. Now, every item element becomes a wrapper around
 the item content. For example:
 
 ```html
 <template>
-  <style include="app-grid-style">
+  <style include="s-grid-style">
 
     :host {
-      --app-grid-columns: 3;
+      --s-grid-columns: 3;
       /* 50% the width of the item is equivalent to 2:1 aspect ratio*/
-      --app-grid-item-height: 50%;
+      --s-grid-item-height: 50%;
     }
 
     ul {
@@ -100,7 +100,7 @@ the item content. For example:
     }
 
   </style>
-  <ul class="app-grid" has-aspect-ratio>
+  <ul class="s-grid" has-aspect-ratio>
     <li class="item">
       <div>item 1</div>
     </li>
@@ -118,7 +118,7 @@ the item content. For example:
 
 Custom property                               | Description                                                | Default
 ----------------------------------------------|------------------------------------------------------------|------------------
-`--app-grid-columns`                          | The number of columns per row.                             | 1
-`--app-grid-gutter`                           | The space between two items.                               | 0px
-`--app-grid-item-height`                      | The height of the items.                                   | auto
-`--app-grid-expandible-item-columns`          | The number of columns an expandible item should expand to. | 1
+`--s-grid-columns`                          | The number of columns per row.                             | 1
+`--s-grid-gutter`                           | The space between two items.                               | 0px
+`--s-grid-item-height`                      | The height of the items.                                   | auto
+`--s-grid-expandible-item-columns`          | The number of columns an expandible item should expand to. | 1

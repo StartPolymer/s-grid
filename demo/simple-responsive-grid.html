@@ -14,12 +14,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
 
-  <title>Responsive grid layout using app-grid-style</title>
+  <title>Responsive grid layout using s-grid-style</title>
 
   <script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
 
   <link rel="import" href="../../../polymer/polymer.html">
-  <link rel="import" href="../app-grid-style.html">
+  <link rel="import" href="../s-grid-style.html">
 
   <style>
 
@@ -33,14 +33,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <body>
   <dom-module id="x-app">
     <template>
-      <style include="app-grid-style">
+      <style include="s-grid-style">
 
         :host {
           display: block;
-          --app-grid-columns: 3;
-          --app-grid-gutter: 10px;
-          --app-grid-expandible-item-columns: 2;
-          --app-grid-item-height: 20vw;
+          --s-grid-columns: 3;
+          --s-grid-gutter: 10px;
+          --s-grid-expandible-item-columns: 2;
+          --s-grid-item-height: 20vw;
         }
 
         ul {
@@ -64,19 +64,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         @media (min-width: 800px) {
           .item:nth-child(5n+1) {
-            @apply(--app-grid-expandible-item);
+            @apply(--s-grid-expandible-item);
           }
         }
 
         @media (max-width: 799px) {
           :host {
-            --app-grid-columns: 2;
-            --app-grid-gutter: 5px;
-            --app-grid-expandible-item-columns: 2;
+            --s-grid-columns: 2;
+            --s-grid-gutter: 5px;
+            --s-grid-expandible-item-columns: 2;
           }
 
           .item:nth-child(3n+1) {
-            @apply(--app-grid-expandible-item);
+            @apply(--s-grid-expandible-item);
           }
         }
 
@@ -84,7 +84,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       <h1>3 columns on large screens and 2 columns on small ones.</h1>
 
-      <ul class="app-grid">
+      <ul class="s-grid">
         <template items="[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]" is="dom-repeat">
           <li class="item"></li>
         </template>

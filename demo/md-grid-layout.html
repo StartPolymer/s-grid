@@ -14,7 +14,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
 
-  <title>Material design grid layout using app-grid</title>
+  <title>Material design grid layout using s-grid</title>
 
   <script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
 
@@ -28,7 +28,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="import" href="../../app-scroll-effects/effects/waterfall.html">
   <link rel="import" href="../../app-header/app-header.html">
   <link rel="import" href="../../app-toolbar/app-toolbar.html">
-  <link rel="import" href="../app-grid-style.html">
+  <link rel="import" href="../s-grid-style.html">
 
   <style>
 
@@ -44,13 +44,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <body>
   <dom-module id="x-grid">
     <template>
-      <style include="app-grid-style">
+      <style include="s-grid-style">
 
         :host {
           display: block;
-          --app-grid-columns: 4;
-          --app-grid-gutter: 10px;
-          --app-grid-expandible-item-columns: 4;
+          --s-grid-columns: 4;
+          --s-grid-gutter: 10px;
+          --s-grid-expandible-item-columns: 4;
           --paper-icon-button-ink-color: white;
         }
 
@@ -80,7 +80,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         .item:nth-child(5n + 1) {
           height: 30vmax;
-          @apply(--app-grid-expandible-item);
+          @apply(--s-grid-expandible-item);
         }
 
         .item-title {
@@ -101,9 +101,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           }
 
           :host {
-            --app-grid-columns: 2;
-            --app-grid-gutter: 5px;
-            --app-grid-item-height: 200px;
+            --s-grid-columns: 2;
+            --s-grid-gutter: 5px;
+            --s-grid-item-height: 200px;
           }
 
         }
@@ -117,7 +117,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </app-toolbar>
         </app-header>
         <div class="centered-container">
-          <ul class="app-grid">
+          <ul class="s-grid">
             <template is="dom-repeat" items="[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]">
               <li class="item" style="background-image: url(//lorempixel.com/800/800/nature/?i=[[item]]);">
                 <div class="item-title">Nature [[item]]</div>
