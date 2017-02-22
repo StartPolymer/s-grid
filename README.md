@@ -27,85 +27,82 @@ for different responsive breakpoints.
     <link rel="import" href="s-grid-style.html">
     <link rel="import" href="s-grid-1-style.html">
     <link rel="import" href="s-grid-2-style.html">
+    <style include="s-grid-style s-grid-1-style s-grid-2-style">
+      :host {
+        display: block;
+        font-size: 20px;
+        font-family: 'Roboto', 'Noto', sans-serif;
+
+        --s-grid-1-expandible-item-items: 2;
+        --s-grid-1-item-height: 25%;
+        --s-grid-2-item-height: 25%;
+      }
+
+      li.item:nth-child(1),
+      li.item:nth-child(3) .item:nth-child(2) {
+        background-color: var(--paper-blue-500);
+        color: #fff;
+      }
+
+      li.item:nth-child(2),
+      li.item:nth-child(3) {
+        background-color: transparent;
+
+        height: 50%;
+      }
+
+      li.item:nth-child(4) {
+        background-color: var(--paper-green-500);
+        color: #fff;
+      }
+
+      li.item .item:nth-child(1) {
+        background-color: var(--paper-red-500);
+        color: #fff;
+      }
+
+      li.item .item:nth-child(2) {
+        background-color: var(--paper-yellow-500);
+      }
+
+      ul {
+        padding: 0;
+        list-style: none;
+      }
+
+      .item {
+        @apply(--layout);
+        @apply(--layout-center-center);
+
+        list-style: none;
+        background-color: #fff;
+        color: #000;
+      }
+
+      .item--expandible {
+        @apply(--s-grid-1-expandible-item);
+      }
+
+      /* Tablet wide */
+      @media screen and (min-width: 600px) {
+        :host {
+          --s-grid-1-gutter: 16px;
+          --s-grid-1-items: 2;
+          --s-grid-1-item-height: 50%;
+          --s-grid-2-item-height: calc((var(--s-grid-1-item-height) - var(--s-grid-1-gutter)) / 2);
+        }
+
+        li.item .item:nth-child(1) {
+          margin-bottom: var(--s-grid-1-gutter);
+        }
+      }
+    </style>
     <next-code-block></next-code-block>
   </template>
 </custom-element-demo>
 ```
 -->
 ```html
-<style include="s-grid-style s-grid-1-style s-grid-2-style">
-
-:host {
-  display: block;
-  font-size: 20px;
-  font-family: 'Roboto', 'Noto', sans-serif;
-
-  --s-grid-1-expandible-item-items: 2;
-  --s-grid-1-item-height: 25%;
-  --s-grid-2-item-height: 25%;
-}
-
-li.item:nth-child(1),
-li.item:nth-child(3) .item:nth-child(2) {
-  background-color: var(--paper-blue-500);
-  color: #fff;
-}
-
-li.item:nth-child(2),
-li.item:nth-child(3) {
-  background-color: transparent;
-
-  height: 50%;
-}
-
-li.item:nth-child(4) {
-  background-color: var(--paper-green-500);
-  color: #fff;
-}
-
-li.item .item:nth-child(1) {
-  background-color: var(--paper-red-500);
-  color: #fff;
-}
-
-li.item .item:nth-child(2) {
-  background-color: var(--paper-yellow-500);
-}
-
-ul {
-  padding: 0;
-  list-style: none;
-}
-
-.item {
-  @apply(--layout);
-  @apply(--layout-center-center);
-
-  list-style: none;
-  background-color: #fff;
-  color: #000;
-}
-
-.item--expandible {
-  @apply(--s-grid-1-expandible-item);
-}
-
-/* Tablet wide */
-@media screen and (min-width: 600px) {
-  :host {
-    --s-grid-1-gutter: 16px;
-    --s-grid-1-items: 2;
-    --s-grid-1-item-height: 50%;
-    --s-grid-2-item-height: calc((var(--s-grid-1-item-height) - var(--s-grid-1-gutter)) / 2);
-  }
-
-  li.item .item:nth-child(1) {
-    margin-bottom: var(--s-grid-1-gutter);
-  }
-}
-
-</style>
-
 <ul class="s-grid s-grid-1">
   <li class="item">1</li>
   <li class="item s-grid s-grid-2">
@@ -246,7 +243,7 @@ Custom property                                             | Description       
 
 ## Installation
 
-`bower i s-grid -S`
+`bower i StartPolymer/s-grid -S`
 
 ## License
 
