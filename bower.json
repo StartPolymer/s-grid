@@ -1,0 +1,26 @@
+{
+  "name": "s-grid",
+  "description": "s-grid is a helper class useful for creating responsive, fluid grid layouts using CSS Custom Properties.",
+  "authors": [
+    "The StartPolymer Project Authors (https://github.com/StartPolymer/authors)"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "web-components",
+    "polymer",
+    "responsive",
+    "grid",
+    "css-custom-properties",
+    "css-variables"
+  ],
+  "main": "s-grid-style.html",
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.7.0"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
+    "web-component-tester": "^4.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+  }
+}

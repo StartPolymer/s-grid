@@ -1,31 +1,37 @@
 <!--
 @license
-Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+Copyright (c) 2017 The StartPolymer Project Authors. All rights reserved.
+This code may only be used under the MIT License found at https://github.com/StartPolymer/license
+The complete set of authors may be found at https://github.com/StartPolymer/authors
+The complete set of contributors may be found at https://github.com/StartPolymer/contributors
 -->
 
-<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../polymer/polymer.html">
 
 <!--
-s-grid is a helper class useful for creating responsive, fluid grid layouts using custom properties.
+`s-grid` is a helper class useful for creating responsive, fluid grid layouts using CSS Custom Properties.
 Because custom properties can be defined inside a `@media` rule, you can customize the grid layout
 for different responsive breakpoints.
 
-Example:
+`s-grid` is up-to-date fork of [`app-grid`](https://github.com/PolymerElements/app-layout/tree/master/app-grid)
 
-Import `s-grid-style.html` and include `s-grid-style` in the style of an element's definition.
-Then, add the class `s-grid` to a container such as `ul` or `div`:
+## New Features
+
+- Grids can be nested using 4 class modifiers `s-grid-1`, `s-grid-2`, `s-grid-3`, `s-grid-4`
+- CSS properties `--s-grid-1-direction` - `--s-grid-4-direction` for direction of an flexible items using `flex-direction` property
+
+## Examples
+
+Import `s-grid-style.html`, `s-grid-1-style.html` and include `s-grid-style`, `s-grid-1-style` in the style of an element's definition.
+Then, add the class `s-grid`, `s-grid-1` to a container such as `ul` or `div`:
 
 ```html
 <template>
-  <style include="s-grid-style">
+  <style include="s-grid-style s-grid-1-style">
+
     :host {
-      --s-grid-columns: 3;
-      --s-grid-item-height: 100px;
+      --s-grid-1-items: 3;
+      --s-grid-1-item-height: 100px;
     }
 
     ul {
@@ -36,60 +42,81 @@ Then, add the class `s-grid` to a container such as `ul` or `div`:
     .item {
       background-color: white;
     }
+
+    @media (max-width: 640px) {
+      :host {
+        --s-grid-1-items: 1;
+      }
+    }
+
   </style>
-  <ul class="s-grid">
+  <ul class="s-grid s-grid-1">
     <li class="item">1</li>
     <li class="item">2</li>
     <li class="item">3</li>
   </ul>
 </template>
 ```
-In the example above, the grid  will take 3 columns per row.
+
+In this example, the grid  will take 3 columns per row and only 1 column if the viewport width is
+smaller than 640px.
 
 ### Expandible items
 
 In many cases, it's useful to expand an item more than 1 column. To achieve this type of layout,
 you can specify the number of columns the item should expand to by setting the custom property
-`--s-grid-expandible-item-columns`. To indicate which item should expand, apply the mixin
-`--s-grid-expandible-item` to a rule with a selector to the item. For example:
+`--s-grid-1-expandible-item-items`. To indicate which item should expand, apply the mixin
+`--s-grid-1-expandible-item` to a rule with a selector to the item. For example:
 
-<pre><code>
-&lt;template>
-  &lt;style include="s-grid-style">
+```html
+<template>
+  <style include="s-grid-style s-grid-1-style">
     :host {
-      --s-grid-columns: 3;
-      --s-grid-item-height: 100px;
-      --s-grid-expandible-item-columns: 3;
+      --s-grid-1-items: 3;
+      --s-grid-1-item-height: 100px;
+      --s-grid-1-expandible-item-items: 3;
+    }
+
+    ul {
+      padding: 0;
+      list-style: none;
     }
 
     /* Only the first item should expand */
     .item:first-child {
-      &#64;apply(--s-grid-expandible-item);
+      @apply(--s-grid-1-expandible-item);
     }
-  &lt;/style>
-&lt;/template>
-</code></pre>
+  </style>
+</template>
+```
 
 ### Preserving the aspect ratio
 
 When the size of a grid item should preserve the aspect ratio, you can add the `has-aspect-ratio`
-attribute to the element with the class `.s-grid`. Now, every item element becomes a wrapper around
+attribute to the element with the class `s-grid`. Now, every item element becomes a wrapper around
 the item content. For example:
 
 ```html
 <template>
-  <style include="s-grid-style">
+  <style include="s-grid-style s-grid-1-style">
+
     :host {
-      --s-grid-columns: 3;
+      --s-grid-1-items: 3;
       /* 50% the width of the item is equivalent to 2:1 aspect ratio*/
-      --s-grid-item-height: 50%;
+      --s-grid-1-item-height: 50%;
+    }
+
+    ul {
+      padding: 0;
+      list-style: none;
     }
 
     .item {
       background-color: white;
     }
+
   </style>
-  <ul class="s-grid" has-aspect-ratio>
+  <ul class="s-grid s-grid-1" has-aspect-ratio>
     <li class="item">
       <div>item 1</div>
     </li>
@@ -105,39 +132,23 @@ the item content. For example:
 
 ### Styling
 
-Custom property                               | Description                                                | Default
-----------------------------------------------|------------------------------------------------------------|------------------
-`--s-grid-columns`                          | The number of columns per row.                             | 1
-`--s-grid-gutter`                           | The space between two items.                               | 0px
-`--s-grid-item-height`                      | The height of the items.                                   | auto
-`--s-grid-expandible-item-columns`          | The number of columns an expandible item should expand to. | 1
+Custom property                                             | Description                                                | Default
+------------------------------------------------------------|------------------------------------------------------------|------------------
+`--s-grid-1-direction` - `--s-grid-4-direction`             | Direction of an flexible items.                            | row
+`--s-grid-1-gutter` - `--s-grid-4-gutter`                   | The space between two items.                               | 0px
+`--s-grid-1-items` - `--s-grid-4-items`                     | The number of items per row or column.                     | 1
+`--s-grid-1-item-height` - `--s-grid-4-item-height`         | The height of the items.                                   | auto
+`--s-grid-1-expandible-item-items` - `--s-grid-4-expandible-item-items` | The number of items an expandible item should expand to. | 1
+`--s-grid-1-total-right-gutter` - `--s-grid-4-total-right-gutter`       | Total right gutter(margin) of items. | var(--s-grid-1-gutter) * var(--s-grid-1-items)
 
 @group App Elements
 @pseudoElement s-grid
-@demo s-grid/demo/index.html
+@demo demo/index.html
 -->
 
 <dom-module id="s-grid-style">
   <template>
     <style>
-
-      :host,
-      :host ::content {
-        /**
-         * The width for the expandible item is:
-         * ((100% - subPixelAdjustment) / columns * itemColumns - gutter
-         *
-         * - subPixelAdjustment: 0.1px (Required for IE 11)
-         * - gutter: var(--s-grid-gutter)
-         * - columns: var(--s-grid-columns)
-         * - itemColumn: var(--s-grid-expandible-item-columns)
-         */
-        --s-grid-expandible-item: {
-          -webkit-flex-basis: calc((100% - 0.1px) / var(--s-grid-columns, 1) * var(--s-grid-expandible-item-columns, 1) - var(--s-grid-gutter, 0px)) !important;
-          flex-basis: calc((100% - 0.1px) / var(--s-grid-columns, 1) * var(--s-grid-expandible-item-columns, 1) - var(--s-grid-gutter, 0px)) !important;
-          max-width: calc((100% - 0.1px) / var(--s-grid-columns, 1) * var(--s-grid-expandible-item-columns, 1) - var(--s-grid-gutter, 0px)) !important;
-        };
-      }
 
       .s-grid,
       :host ::content .s-grid {
@@ -145,16 +156,10 @@ Custom property                               | Description                     
         display: -webkit-flex;
         display: flex;
 
-        -ms-flex-direction: row;
-        -webkit-flex-direction: row;
-        flex-direction: row;
-
         -ms-flex-wrap: wrap;
         -webkit-flex-wrap: wrap;
         flex-wrap: wrap;
 
-        padding-top: var(--s-grid-gutter, 0px);
-        padding-left: var(--s-grid-gutter, 0px);
         box-sizing: border-box;
       }
 
@@ -165,14 +170,6 @@ Custom property                               | Description                     
         -webkit-flex: 1;
         flex: 1;
 
-        /* The width for an item is: (100% - subPixelAdjustment - gutter * columns) / columns */
-        -webkit-flex-basis: calc((100% - 0.1px - (var(--s-grid-gutter, 0px) * var(--s-grid-columns, 1))) / var(--s-grid-columns, 1));
-        flex-basis: calc((100% - 0.1px - (var(--s-grid-gutter, 0px) * var(--s-grid-columns, 1))) / var(--s-grid-columns, 1));
-
-        max-width: calc((100% - 0.1px - (var(--s-grid-gutter, 0px) * var(--s-grid-columns, 1))) / var(--s-grid-columns, 1));
-        margin-bottom: var(--s-grid-gutter, 0px);
-        margin-right: var(--s-grid-gutter, 0px);
-        height: var(--s-grid-item-height);
         box-sizing: border-box;
       }
 
@@ -185,7 +182,6 @@ Custom property                               | Description                     
       :host ::content .s-grid[has-aspect-ratio] > *::before {
         display: block;
         content: "";
-        padding-top: var(--s-grid-item-height, 100%);
       }
 
       .s-grid[has-aspect-ratio] > * > *,
