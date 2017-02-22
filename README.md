@@ -15,7 +15,7 @@ for different responsive breakpoints.
 
 ## Demo
 
-- [Material Design reflow grid layout](https://webcomponents.org/element/StartPolymer/s-grid/demo/demo/material-design-reflow-grid.html)
+- [Reflow grid layout](https://webcomponents.org/element/StartPolymer/s-grid/demo/demo/material-design-reflow-grid.html) based on [Material Design Responsive Reflow pattern](https://material.io/guidelines/layout/responsive-ui.html#responsive-ui-patterns)
 - [Aspect ratios](https://webcomponents.org/element/StartPolymer/s-grid/demo/demo/aspect-ratio.html)
 - [All demos][webcomponents-demo]
 
